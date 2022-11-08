@@ -42,9 +42,9 @@ public class ArticleValidator {
             errors.add("veuillez renseigner le prix unitaire Ttc");
         }
 
-        if (articleDto.getCategory() == null){
+        /*if (articleDto.getCategory() == null){
             errors.add("veuillez selectionner une categorie");
-        }
+        }*/
 
         return errors;
     }

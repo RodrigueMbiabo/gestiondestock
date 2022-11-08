@@ -31,7 +31,9 @@ public class CategoryServiceImpl implements CategoryService {
             log.error("La categorie n'est pas valide {}",categoryDto);
             throw new InvalidEntityException("La categorie n'est pas valide", ErrorCodes.CATEGORY_NOT_FOUND, errors);
         }
-        return CategoryDto.fromEntity(categoryRepository.save(CategoryDto.toEntity(categoryDto)));
+        return CategoryDto.fromEntity(
+                categoryRepository.save(CategoryDto.toEntity(categoryDto))
+        );
     }
 
     @Override
