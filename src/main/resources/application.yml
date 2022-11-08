@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/gestionstock?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+    username: root
+    password: Skysoft2021
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+# Specify DBMS
+  jpa:
+    database: MYSQL
+    show-sql: false
+# Hibernate DDL Auto (create, update, create-drop)
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+server:
+  port: 8080
+
+flickr:
+  apiKey: 287c26b38eb6e05a0d866d87a17ab4f6
+  apiSecret: df751f13cbd9b2fd
+  appKey: 72157720862260546-942d051a1d674498
+  appSecret: 69d02613d033b730
