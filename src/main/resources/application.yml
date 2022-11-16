@@ -18,8 +18,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
-        ejb:
-          interceptor: com.example.gestiondestock.interceptor.Interceptor
+          #ejb:
+        #  interceptor: com.example.gestiondestock.interceptor.Interceptor
 server:
   port: 8080
 

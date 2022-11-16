@@ -2,7 +2,7 @@ package com.example.gestiondestock.utils;
 
 public interface Constants {
 
-    String APP_ROOT = "gestiondestoc/v1";
+    String APP_ROOT = "gestiondestock/v1";
 
     String COMMANDE_FOURNISSEUR_ENDPOINT = APP_ROOT + "/commandesFournisseurs";
 
@@ -15,4 +15,6 @@ public interface Constants {
     String FIND_ALL_COMMANDE_FOURNISSEUR_ENDPOINT = COMMANDE_FOURNISSEUR_ENDPOINT + "/all";
 
     String DELETE_COMMANDE_FOURNISSEUR_BY_ID_ENDPOINT = COMMANDE_FOURNISSEUR_ENDPOINT + "/delete/{idCommandeFournisseur}";
+
+    String AUTHENTICATION_ENDPOINT = APP_ROOT+ "/auth";
 }
