@@ -24,11 +24,11 @@ public class JwtUtil {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    /*public String extractIdEntreprise(String token){
+    public String extractIdEntreprise(String token){
         final Claims claims = extractAllClaims(token);
 
         return claims.get("id_entreprise", String.class);
-    }*/
+    }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
@@ -51,7 +51,7 @@ public class JwtUtil {
     private String createToken(Map<String, Object> claims, String subject) {
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
-                //.claim("id_entreprise","")
+                .claim("idEntreprise","")
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
     }
 

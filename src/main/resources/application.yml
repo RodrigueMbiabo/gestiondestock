@@ -15,11 +15,10 @@ spring:
     # Hibernate DDL Auto (create, update, create-drop)
     hibernate:
       ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL5Dialect
     properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
-          #ejb:
-        #  interceptor: com.example.gestiondestock.interceptor.Interceptor
+      session_factory:
+        interceptor: com.example.gestiondestock.interceptor.Interceptor
 server:
   port: 8080
 

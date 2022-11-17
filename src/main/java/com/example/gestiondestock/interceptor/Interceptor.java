@@ -9,9 +9,9 @@ public class Interceptor extends EmptyInterceptor {
     public String onPrepareStatement(String sql) {
         if (StringUtils.hasLength(sql) && sql.toLowerCase().startsWith("select")){
             if (sql.contains("where")){
-                sql = sql + " and id_entreprise = 1";
+                sql = sql + " and idEntreprise = 1";
             } else {
-                sql = sql + " where id_entreprise = 1";
+                sql = sql + " where idEntreprise = 1";
             }
         }
         return super.onPrepareStatement(sql);

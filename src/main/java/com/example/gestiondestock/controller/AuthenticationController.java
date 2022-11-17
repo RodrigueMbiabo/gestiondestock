@@ -31,20 +31,16 @@ public class AuthenticationController {
     private JwtUtil jwtUtil;
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest){
-
-        System.out.println("\n\nauthenticate1\n\n");
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request){
 
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        authenticationRequest.getLogin(),
-                        authenticationRequest.getPassword()
+                        request.getLogin(),
+                        request.getPassword()
                 )
         );
 
-        System.out.println("\n\nauthenticate1\n\n");
-
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getLogin());
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getLogin());
 
         final String jwt = jwtUtil.generateToken(userDetails);
 
