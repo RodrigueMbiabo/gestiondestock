@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -46,9 +47,17 @@ public class UtilisateurDto {
                 .nom(utilisateur.getNom())
                 .prenom(utilisateur.getPrenom())
                 .email(utilisateur.getEmail())
-                .photo(utilisateur.getPhoto())
-                .dateNaissance(utilisateur.getDateNaissance())
                 .motDePasse(utilisateur.getMotDePasse())
+                .dateNaissance(utilisateur.getDateNaissance())
+                .adresse(AdresseDto.fromEntity(utilisateur.getAdresse()))
+                .photo(utilisateur.getPhoto())
+                .entreprise(EntrepriseDto.fromEntity(utilisateur.getEntreprise()))
+                .roles(
+                        utilisateur.getRoles() != null ?
+                                utilisateur.getRoles().stream()
+                                        .map(RolesDto::fromEntity)
+                                        .collect(Collectors.toList()) : null
+                )
                 .build();
     }
 
@@ -66,6 +75,7 @@ public class UtilisateurDto {
         utilisateur.setPhoto(utilisateurDto.getPhoto());
         utilisateur.setDateNaissance(utilisateurDto.getDateNaissance());
         utilisateur.setMotDePasse(utilisateurDto.getMotDePasse());
+        utilisateur.setEntreprise(EntrepriseDto.toEntity(utilisateurDto.getEntreprise()));
 
         return utilisateur;
     }

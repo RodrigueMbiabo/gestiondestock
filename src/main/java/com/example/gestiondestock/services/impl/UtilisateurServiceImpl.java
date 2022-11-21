@@ -45,12 +45,29 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
+    public UtilisateurDto findByEmail(String email) {
+        if (email == null){
+            log.error("Utilisateur email is null");
+            return null;
+        }
+        return UtilisateurDto.fromEntity(
+                utilisateurRepository.findUtilisateurByEmail(email).orElseThrow(()->
+                        new EntityNotFoundException("Aucun utilisateur avec l'email fourni", ErrorCodes.UTILISATEUR_NOT_FOUND)
+                )
+        );
+    }
+
+    @Override
     public List<UtilisateurDto> findAll() {
         return null;
     }
 
     @Override
     public void delete(Integer id) {
-
+        if (id == null){
+            log.error("Utilisateur ID is null");
+            return;
+        }
+        utilisateurRepository.deleteById(id);
     }
 }

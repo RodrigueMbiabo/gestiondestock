@@ -1,13 +1,17 @@
 package com.example.gestiondestock.handlers;
 
 import com.example.gestiondestock.exception.EntityNotFoundException;
+import com.example.gestiondestock.exception.ErrorCodes;
 import com.example.gestiondestock.exception.InvalidEntityException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.util.Collections;
 
 @RestControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
@@ -31,6 +35,20 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 .errorCodes(exception.getErrorCodes())
                 .httpCode(badRequest.value())
                 .message(exception.getMessage())
+                .build();
+
+        return new ResponseEntity<>(errorDto, badRequest);
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ErrorDto> handleException(BadCredentialsException exception, WebRequest webRequest) {
+        final HttpStatus badRequest = HttpStatus.BAD_REQUEST;
+
+        final ErrorDto errorDto = ErrorDto.builder()
+                .errorCodes(ErrorCodes.BAD_CREDENTIALS)
+                .httpCode(badRequest.value())
+                .message(exception.getMessage())
+                .errors(Collections.singletonList("Login et / ou mot de passe incorrecte"))
                 .build();
 
         return new ResponseEntity<>(errorDto, badRequest);
