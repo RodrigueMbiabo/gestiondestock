@@ -53,7 +53,7 @@ public class SwaggerConfiguration {
                 .securitySchemes(Collections.singletonList(apiKey()))
                 .useDefaultResponseMessages(false)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.teamdevtech.gestiondestock"))
+                .apis(RequestHandlerSelectors.basePackage("com.example.gestiondestock"))
                 .paths(PathSelectors.any())
                 .build();
     }

@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -59,7 +60,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     @Override
     public List<UtilisateurDto> findAll() {
-        return null;
+        return utilisateurRepository.findAll().stream()
+                .map(UtilisateurDto::fromEntity)
+                .collect(Collectors.toList());
     }
 
     @Override

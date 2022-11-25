@@ -16,9 +16,9 @@ spring:
     hibernate:
       ddl-auto: update
       dialect: org.hibernate.dialect.MySQL5Dialect
-    properties:
-      session_factory:
-        interceptor: com.example.gestiondestock.interceptor.Interceptor
+#    properties:
+#      session_factory:
+#        interceptor: com.example.gestiondestock.interceptor.Interceptor
 server:
   port: 8080
 

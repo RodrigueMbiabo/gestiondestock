@@ -98,7 +98,7 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			<!--<plugin>
+			<plugin>
 				<groupId>com.github.kongchen</groupId>
 				<artifactId>swagger-maven-plugin</artifactId>
 				<version>3.1.8</version>
@@ -107,7 +107,7 @@
 						<apiSource>
 							<springmvc>true</springmvc>
 							<locations>
-								<location>com.example.gestiondestock.controller</location>
+								<location>com.example.gestiondestock.controller.api</location>
 							</locations>
 							<basePath>http://localhost:8080</basePath>
 							<info>
@@ -141,7 +141,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>-->
+			</plugin>
 		</plugins>
 	</build>
 
