@@ -24,6 +24,8 @@ public class MvtStkDto {
 
     private TypeMvtStk typeMvtStk;
 
+    private SourceMvtStk sourceMvt;
+
     private Integer idEntreprise;
 
     public static MvtStkDto fromEntity(MvtStk mvtStk){
