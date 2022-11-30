@@ -2,6 +2,7 @@ package com.example.gestiondestock.controller;
 
 import com.example.gestiondestock.controller.api.CommandeClientApi;
 import com.example.gestiondestock.dto.CommandeClientDto;
+import com.example.gestiondestock.dto.LigneCommandeClientDto;
 import com.example.gestiondestock.model.EtatCommande;
 import com.example.gestiondestock.services.CommandeClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,11 @@ public class CommandeClientController implements CommandeClientApi{
     }
 
     @Override
+    public ResponseEntity<CommandeClientDto> deleteArticle(Integer idCommande, Integer idLigneCommande) {
+        return ResponseEntity.ok(commandeClientService.deleteArticle(idCommande, idLigneCommande));
+    }
+
+    @Override
     public ResponseEntity<CommandeClientDto> findById(Integer idCommandeClient) {
         return ResponseEntity.ok(commandeClientService.findById(idCommandeClient));
     }
@@ -59,6 +65,11 @@ public class CommandeClientController implements CommandeClientApi{
     @Override
     public ResponseEntity<List<CommandeClientDto>> findAll() {
         return ResponseEntity.ok(commandeClientService.findAll());
+    }
+
+    @Override
+    public ResponseEntity<List<LigneCommandeClientDto>> findAllLignesCommandesClientByCommandeClientId(Integer idCommande) {
+        return ResponseEntity.ok(commandeClientService.findAllLignesCommandesClientByCommandeClientId(idCommande));
     }
 
     @Override

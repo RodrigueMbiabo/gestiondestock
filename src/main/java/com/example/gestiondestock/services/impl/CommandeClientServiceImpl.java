@@ -222,6 +222,19 @@ public class CommandeClientServiceImpl implements CommandeClientService {
         return commandeClient;
     }
 
+    @Override
+    public CommandeClientDto deleteArticle(Integer idCommande, Integer idLigneCommande) {
+        checkIdCommande(idCommande);
+        checkIdLigneCommande(idLigneCommande);
+
+        CommandeClientDto commandeClient = checkEtatCommande(idCommande);
+        // Just to check the LigneCommandeClient and inform the client in case it is absent
+        findLigneCommandeClient(idLigneCommande);
+        ligneCommandeClientRepository.deleteById(idLigneCommande);
+
+        return commandeClient;
+    }
+
     private void checkIdArticle(Integer idArticle, String msg) {
         if (idArticle == null) {
             log.error("L'ID de " + msg + " is NULL");
@@ -272,6 +285,13 @@ public class CommandeClientServiceImpl implements CommandeClientService {
     public List<CommandeClientDto> findAll() {
         return commandeClientRepository.findAll().stream()
                 .map(CommandeClientDto::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<LigneCommandeClientDto> findAllLignesCommandesClientByCommandeClientId(Integer idCommande) {
+        return ligneCommandeClientRepository.findAllByCommandeClientId(idCommande).stream()
+                .map(LigneCommandeClientDto::fromEntity)
                 .collect(Collectors.toList());
     }
 

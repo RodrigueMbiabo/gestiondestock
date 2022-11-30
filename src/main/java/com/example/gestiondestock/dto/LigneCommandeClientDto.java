@@ -13,7 +13,6 @@ public class LigneCommandeClientDto {
 
     private Integer id;
 
-    @JsonIgnore
     private ArticleDto article;
 
     @JsonIgnore
@@ -33,6 +32,7 @@ public class LigneCommandeClientDto {
 
         return LigneCommandeClientDto.builder()
                 .id(ligneCommandeClient.getId())
+                .article(ArticleDto.fromEntity(ligneCommandeClient.getArticle()))
                 .quantite(ligneCommandeClient.getQuantite())
                 .prixUnitaire(ligneCommandeClient.getPrixUnitaire())
                 .idEntreprise(ligneCommandeClient.getIdEntreprise())
@@ -47,6 +47,7 @@ public class LigneCommandeClientDto {
 
         LigneCommandeClient ligneCommandeClient = new LigneCommandeClient();
         ligneCommandeClient.setId(ligneCommandeClientDto.getId());
+        ligneCommandeClient.setArticle(ArticleDto.toEntity(ligneCommandeClientDto.getArticle()));
         ligneCommandeClient.setQuantite(ligneCommandeClientDto.getQuantite());
         ligneCommandeClient.setIdEntreprise(ligneCommandeClientDto.getIdEntreprise());
         ligneCommandeClient.setPrixUnitaire(ligneCommandeClientDto.getPrixUnitaire());

@@ -13,10 +13,8 @@ public class LigneCommandeFournisseurDto {
 
     private Integer id;
 
-    @JsonIgnore
     private ArticleDto article;
 
-    @JsonIgnore
     private CommandeFournisseurDto commandeFournisseur;
 
     private BigDecimal quantite;
@@ -33,6 +31,7 @@ public class LigneCommandeFournisseurDto {
 
         return LigneCommandeFournisseurDto.builder()
                 .id(ligneCommandeFournisseur.getId())
+                .article(ArticleDto.fromEntity(ligneCommandeFournisseur.getArticle()))
                 .quantite(ligneCommandeFournisseur.getQuantite())
                 .prixUnitaire(ligneCommandeFournisseur.getPrixUnitaire())
                 .idEntreprise(ligneCommandeFournisseur.getIdEntreprise())
@@ -47,6 +46,7 @@ public class LigneCommandeFournisseurDto {
 
         LigneCommandeFournisseur ligneCommandeFournisseur = new LigneCommandeFournisseur();
         ligneCommandeFournisseur.setId(ligneCommandeFournisseurDto.getId());
+        ligneCommandeFournisseur.setArticle(ArticleDto.toEntity(ligneCommandeFournisseurDto.getArticle()));
         ligneCommandeFournisseur.setQuantite(ligneCommandeFournisseurDto.getQuantite());
         ligneCommandeFournisseur.setPrixUnitaire(ligneCommandeFournisseurDto.getPrixUnitaire());
         ligneCommandeFournisseur.setIdEntreprise(ligneCommandeFournisseurDto.getIdEntreprise());

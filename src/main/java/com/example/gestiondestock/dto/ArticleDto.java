@@ -28,7 +28,6 @@ public class ArticleDto {
 
     private String photo;
 
-    @JsonIgnore
     private CategoryDto category;
 
     public static ArticleDto fromEntity(Article article) {
@@ -46,6 +45,7 @@ public class ArticleDto {
                 .prixUnitaireTtc(article.getPrixUnitaireTtc())
                 .idEntreprise(article.getIdEntreprise())
                 .photo(article.getPhoto())
+                .category(CategoryDto.fromEntity(article.getCategory()))
                 .build();
     }
 
@@ -65,6 +65,7 @@ public class ArticleDto {
         article.setPrixUnitaireTtc(articleDto.getPrixUnitaireTtc());
         article.setIdEntreprise(articleDto.getIdEntreprise());
         article.setPhoto(article.getPhoto());
+        article.setCategory(CategoryDto.toEntity(articleDto.getCategory()));
 
         return article;
     }

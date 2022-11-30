@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -37,4 +38,16 @@ public class Article extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "idcategorie")
     private Category category;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "article")
+    private List<LigneVente> ligneVentes;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "article")
+    private List<LigneCommandeClient> ligneCommandeClients;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "article")
+    private List<LigneCommandeFournisseur> ligneCommandeFournisseurs;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "article")
+    private List<MvtStk> mvtStks;
 }

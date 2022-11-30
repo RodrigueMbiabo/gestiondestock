@@ -1,6 +1,7 @@
 package com.example.gestiondestock.services;
 
 import com.example.gestiondestock.dto.CommandeClientDto;
+import com.example.gestiondestock.dto.LigneCommandeClientDto;
 import com.example.gestiondestock.model.EtatCommande;
 
 import java.math.BigDecimal;
@@ -18,11 +19,15 @@ public interface CommandeClientService {
 
     CommandeClientDto updateArticle(Integer idCommande, Integer idLigneCommande, Integer newIdArticle);
 
+    CommandeClientDto deleteArticle(Integer idCommande, Integer idLigneCommande);
+
     CommandeClientDto findById(Integer id);
 
     CommandeClientDto findByCode(String code);
 
     List<CommandeClientDto> findAll();
+
+    List<LigneCommandeClientDto> findAllLignesCommandesClientByCommandeClientId(Integer idCommande);
 
     void delete(Integer id);
 }
