@@ -40,7 +40,12 @@ public enum ErrorCodes {
     VENTE_NOT_VALID(12001),
 
     BAD_CREDENTIALS(12003),
+
+    //Liste des exceptions techniques
+    UPDATE_PHOTO_EXCEPTION(14000),
+    UNKNOWN_CONTEXT(14001)
     ;
+
     private int code;
     ErrorCodes(int code){
         this.code = code;
